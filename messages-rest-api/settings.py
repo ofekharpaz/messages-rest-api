@@ -75,7 +75,8 @@ WSGI_APPLICATION = 'messages-rest-api.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 # Update the DATABASES setting to use PostgreSQL
-if os.getenv('DATABASE_URL') is None:
+test = False
+if test:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -88,7 +89,14 @@ if os.getenv('DATABASE_URL') is None:
     }
 else:
     DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+         'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'messagesdb',
+            'USER': 'messagesdb_user',
+            'PASSWORD': 'XcoYDvrc7ed6O1By7DsJLhArPoeHTU1H',
+            'HOST': 'dpg-co7ft5cf7o1s73d8as0g-a.frankfurt-postgres.render.com',
+            'PORT': '5432',
+        }
     }
 
 
