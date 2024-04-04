@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-2q!v6r$+skde60nmv+25tuxgs#cbu565fb&dtn$7n&ria3w_3j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['messages-rest-api-c4cb729593c9.herokuapp.com']
+ALLOWED_HOSTS = ['localhost','messages-rest-api-c4cb729593c9.herokuapp.com']
 
 
 # Application definition
@@ -75,9 +75,21 @@ WSGI_APPLICATION = 'messages-rest-api.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 # Update the DATABASES setting to use PostgreSQL
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-}
+if os.getenv('DATABASE_URL') is None:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'messagesdb',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    }
 
 
 # Password validation
