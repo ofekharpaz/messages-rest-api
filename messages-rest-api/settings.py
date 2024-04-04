@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-2q!v6r$+skde60nmv+25tuxgs#cbu565fb&dtn$7n&ria3w_3j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','messages-rest-api-c4cb729593c9.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'messages-rest-api.onrender.com']
 
 
 # Application definition
