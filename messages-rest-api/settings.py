@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'messages-rest-api.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 # Update the DATABASES setting to use PostgreSQL
-test = False
+test = False 
 if test:
     DATABASES = {
         'default': {
