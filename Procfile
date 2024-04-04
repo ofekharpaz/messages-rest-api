@@ -1,0 +1,1 @@
+web: gunicorn messages-rest-api.wsgi
