@@ -18,9 +18,13 @@ from django.contrib import admin
 from django.urls import path
 
 from django.urls import path
-from messages.views import write_message
+from messages.views import write_message, get_user_messages, get_unread_messages, read_message, delete_message
 
 urlpatterns = [
     path('api/write_message/', write_message, name='write_message'),
+    path('api/user/<str:username>/messages/', get_user_messages, name='user_messages'),
+    path('api/user/<str:username>/unread-messages/', get_unread_messages, name='unread_messages'),
+    path('api/user/<str:username>/messages/read/', read_message, name='read_message'),
+    path('api/user/<str:username>/messages/<str:subject>/delete/', delete_message, name='delete_message')
     # Add other URL patterns for different API endpoints
 ]

@@ -75,29 +75,17 @@ WSGI_APPLICATION = 'messages-rest-api.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 # Update the DATABASES setting to use PostgreSQL
-test = False 
-if test:
-    DATABASES = {
+
+DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'messagesdb',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'messagesdb',
+        'USER': 'messagesdb_user',
+        'PASSWORD': 'XcoYDvrc7ed6O1By7DsJLhArPoeHTU1H',
+        'HOST': 'dpg-co7ft5cf7o1s73d8as0g-a.frankfurt-postgres.render.com',
+        'PORT': '5432',
     }
-else:
-    DATABASES = {
-         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'messagesdb',
-            'USER': 'messagesdb_user',
-            'PASSWORD': 'XcoYDvrc7ed6O1By7DsJLhArPoeHTU1H',
-            'HOST': 'dpg-co7ft5cf7o1s73d8as0g-a.frankfurt-postgres.render.com',
-            'PORT': '5432',
-        }
-    }
+}
 
 
 # Password validation
