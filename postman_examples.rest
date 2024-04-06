@@ -1,4 +1,4 @@
-POST http://localhost:8000/api/write_message/
+POST https://messages-rest-api.onrender.com/api/write_message/
 Content-Type: application/json
 
 {
@@ -11,12 +11,12 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8000/api/user/ofek/messages/
+GET https://messages-rest-api.onrender.com/api/user/ofek/messages/
 Content-Type: application/json
 
 ###
 
-POST http://localhost:8000/api/signup/
+POST https://messages-rest-api.onrender.com/api/signup/
 Content-Type: application/json
 
 {
@@ -28,13 +28,13 @@ Content-Type: application/json
 ###
 
 #fill in the token returned in the signup
-GET http://localhost:8000/api/user/ofek/messages/
+GET https://messages-rest-api.onrender.com/api/user/ofek/messages/
 Content-Type: application/json
 Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7 
 
 ###
 
-POST http://localhost:8000/api/write_message/
+POST https://messages-rest-api.onrender.com/api/write_message/
 Content-Type: application/json
 
 {
@@ -48,38 +48,38 @@ Content-Type: application/json
 ###
 
 #fill in the token returned in the signup
-GET http://localhost:8000/api/user/ofek/unread-messages/
+GET https://messages-rest-api.onrender.com/api/user/ofek/unread-messages/
 Content-Type: application/json
 Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7 
 
 ###
 
 #fill in the token returned in the signup
-GET http://localhost:8000/api/user/ofek/messages/
+GET https://messages-rest-api.onrender.com/api/user/ofek/messages/
 Content-Type: application/json
 Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7
 
 ###
 
-GET http://localhost:8000/api/user/ofek/messages/read/
+GET https://messages-rest-api.onrender.com/api/user/ofek/messages/read/
 Content-Type: application/json
 
 ###
 
 #fill in the token returned in the signup
-GET http://localhost:8000/api/user/ofek/unread-messages/
+GET https://messages-rest-api.onrender.com/api/user/ofek/unread-messages/
 Content-Type: application/json
 Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7
 
 ###
 
-DELETE http://localhost:8000/api/user/ofek/messages/ReadMessage/delete/
+DELETE https://messages-rest-api.onrender.com/api/user/ofek/messages/ReadMessage/delete/
 Content-Type: application/json
 
 ###
 
 #fill in the token returned in the signup
-GET http://localhost:8000/api/user/ofek/messages/
+GET https://messages-rest-api.onrender.com/api/user/ofek/messages/
 Content-Type: application/json
 Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7
 
@@ -87,7 +87,7 @@ Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7
 
 #EDGE CASES:
 #Username already taken
-POST http://localhost:8000/api/signup/
+POST https://messages-rest-api.onrender.com/api/signup/
 Content-Type: application/json
 
 {
@@ -98,7 +98,7 @@ Content-Type: application/json
 ###
 
 #No user exists
-POST http://localhost:8000/api/login/
+POST https://messages-rest-api.onrender.com/api/login/
 Content-Type: application/json
 
 {
@@ -108,7 +108,7 @@ Content-Type: application/json
 ###
 
 #Invalid credentials
-POST http://localhost:8000/api/login/
+POST https://messages-rest-api.onrender.com/api/login/
 Content-Type: application/json
 
 {
@@ -118,20 +118,20 @@ Content-Type: application/json
 ###
 
 #Invalid token
-GET http://localhost:8000/api/user/ofek/messages/
+GET https://messages-rest-api.onrender.com/api/user/ofek/messages/
 Content-Type: application/json
 Authorization: Token xxx
 
 ###
 
 #Message deleted doesnt exist
-DELETE http://localhost:8000/api/user/ofek/messages/NonExistingMessage/delete/
+DELETE https://messages-rest-api.onrender.com/api/user/ofek/messages/NonExistingMessage/delete/
 Content-Type: application/json
 
 ###
 
 #There is no unread message (run until all are read)
-GET http://localhost:8000/api/user/ofek/messages/read/
+GET https://messages-rest-api.onrender.com/api/user/ofek/messages/read/
 Content-Type: application/json
 
 
