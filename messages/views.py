@@ -1,9 +1,40 @@
 import json
 from django.http import JsonResponse
-from .models import Message
+from .models import Message, UserSerializer
 from django.views.decorators.http import require_GET
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
+
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework import status
+
+from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+
+
+@api_view(['POST'])
+def signup(request):
+    serializer = UserSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        user = User.objects.get(username=request.data['username'])
+        user.set_password(request.data['password'])
+        user.save()
+        token = Token.objects.create(user=user)
+        return Response({'token': token.key, 'user': serializer.data})
+    return Response(serializer.errors, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def login(request):
+    user = get_object_or_404(User, username=request.data['username'])
+    if not user.check_password(request.data['password']):
+        return Response("missing user", status=status.HTTP_404_NOT_FOUND)
+    token, created = Token.objects.get_or_create(user=user)
+    serializer = UserSerializer(user)
+    return Response({'token': token.key, 'user': serializer.data})
 
 @csrf_exempt
 def write_message(request):
@@ -30,8 +61,13 @@ def write_message(request):
     print(res)
     return res
 
-@require_GET
+@api_view(['GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def get_user_messages(request, username):
+    # Check if the authenticated username matches the provided username
+    if request.user.username != username:
+        return JsonResponse({'error': 'Unauthorized'}, status=403)
     # Query the database to retrieve all messages for the specified user
     user_messages = Message.objects.filter(receiver=username)
     
@@ -41,8 +77,14 @@ def get_user_messages(request, username):
     # Return the JSON response containing the messages data
     return JsonResponse(messages_data, safe=False)
 
-@require_GET
+@api_view(['GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def get_unread_messages(request, username):
+    # Check if the authenticated username matches the provided username
+    if request.user.username != username:
+        return JsonResponse({'error': 'Unauthorized'}, status=403)
+    
     # Query the database to retrieve unread messages for the specified user
     unread_messages = Message.objects.filter(receiver=username, is_read=False)
 
