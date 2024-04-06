@@ -21,6 +21,7 @@ from django.urls import path
 from messages.views import write_message, get_user_messages, get_unread_messages, read_message, delete_message, signup, login
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('api/signup/', signup, name='signup'),
     path('api/login/', login, name='login'),
     path('api/write_message/', write_message, name='write_message'),
