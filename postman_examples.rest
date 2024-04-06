@@ -27,10 +27,19 @@ Content-Type: application/json
 
 ###
 
-#fill in the token returned in the signup
+#(if you forgot the token, just login and it will be returned again)
+POST https://messages-rest-api.onrender.com/api/login/
+Content-Type: application/json
+
+{
+    "username": "ofek",
+    "password": "ofek"
+}
+###
+#fill in the token returned in the signup ^^^
 GET https://messages-rest-api.onrender.com/api/user/ofek/messages/
 Content-Type: application/json
-Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7 
+Authorization: Token 4dcce78c0010d8d6a9176a0f8e1f0d372e1caebe 
 
 ###
 
@@ -50,14 +59,14 @@ Content-Type: application/json
 #fill in the token returned in the signup
 GET https://messages-rest-api.onrender.com/api/user/ofek/unread-messages/
 Content-Type: application/json
-Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7 
+Authorization: Token 4dcce78c0010d8d6a9176a0f8e1f0d372e1caebe 
 
 ###
 
 #fill in the token returned in the signup
 GET https://messages-rest-api.onrender.com/api/user/ofek/messages/
 Content-Type: application/json
-Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7
+Authorization: Token 4dcce78c0010d8d6a9176a0f8e1f0d372e1caebe
 
 ###
 
@@ -69,7 +78,7 @@ Content-Type: application/json
 #fill in the token returned in the signup
 GET https://messages-rest-api.onrender.com/api/user/ofek/unread-messages/
 Content-Type: application/json
-Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7
+Authorization: Token 4dcce78c0010d8d6a9176a0f8e1f0d372e1caebe
 
 ###
 
@@ -81,7 +90,7 @@ Content-Type: application/json
 #fill in the token returned in the signup
 GET https://messages-rest-api.onrender.com/api/user/ofek/messages/
 Content-Type: application/json
-Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7
+Authorization: Token 4dcce78c0010d8d6a9176a0f8e1f0d372e1caebe
 
 ###
 
