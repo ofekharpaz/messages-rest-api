@@ -1,0 +1,157 @@
+POST http://localhost:8000/api/write_message/
+Content-Type: application/json
+
+{
+    "sender": "abra",
+    "receiver": "ofek",
+    "message": "You passed!",
+    "subject": "Home assignment",
+    "is_read": false
+}
+
+###
+
+GET http://localhost:8000/api/user/ofek/messages/
+Content-Type: application/json
+
+###
+
+POST http://localhost:8000/api/signup/
+Content-Type: application/json
+
+{
+    "username": "ofek",
+    "password": "ofek",
+    "email": "ofekharpaz6@gmail.com"
+}
+
+###
+
+#fill in the token returned in the signup
+GET http://localhost:8000/api/user/ofek/messages/
+Content-Type: application/json
+Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7 
+
+###
+
+POST http://localhost:8000/api/write_message/
+Content-Type: application/json
+
+{
+    "sender": "abra",
+    "receiver": "ofek",
+    "message": "This message is already read",
+    "subject": "ReadMessage",
+    "is_read": true
+}
+
+###
+
+#fill in the token returned in the signup
+GET http://localhost:8000/api/user/ofek/unread-messages/
+Content-Type: application/json
+Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7 
+
+###
+
+#fill in the token returned in the signup
+GET http://localhost:8000/api/user/ofek/messages/
+Content-Type: application/json
+Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7
+
+###
+
+GET http://localhost:8000/api/user/ofek/messages/read/
+Content-Type: application/json
+
+###
+
+#fill in the token returned in the signup
+GET http://localhost:8000/api/user/ofek/unread-messages/
+Content-Type: application/json
+Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7
+
+###
+
+DELETE http://localhost:8000/api/user/ofek/messages/ReadMessage/delete/
+Content-Type: application/json
+
+###
+
+#fill in the token returned in the signup
+GET http://localhost:8000/api/user/ofek/messages/
+Content-Type: application/json
+Authorization: Token 97ff4543987cfa683580e49a3e7f0113373694e7
+
+###
+
+#EDGE CASES:
+#Username already taken
+POST http://localhost:8000/api/signup/
+Content-Type: application/json
+
+{
+    "username": "ofek",
+    "password": "ofek"
+}
+
+###
+
+#No user exists
+POST http://localhost:8000/api/login/
+Content-Type: application/json
+
+{
+    "username": "name",
+    "password": "password"
+}
+###
+
+#Invalid credentials
+POST http://localhost:8000/api/login/
+Content-Type: application/json
+
+{
+    "username": "ofek",
+    "password": "password"
+}
+###
+
+#Invalid token
+GET http://localhost:8000/api/user/ofek/messages/
+Content-Type: application/json
+Authorization: Token xxx
+
+###
+
+#Message deleted doesnt exist
+DELETE http://localhost:8000/api/user/ofek/messages/NonExistingMessage/delete/
+Content-Type: application/json
+
+###
+
+#There is no unread message (run until all are read)
+GET http://localhost:8000/api/user/ofek/messages/read/
+Content-Type: application/json
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
